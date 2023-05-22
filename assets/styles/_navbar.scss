@@ -1,0 +1,53 @@
+@import "custom";
+
+.navbar1 {
+    color: $intermediate;
+    background-color: $dark;
+}
+
+.navbar {
+    background-color: transparent;
+
+    .navbar-brand {
+        color: $light;
+        font-family: $font-family-base2;
+    }
+
+    .nav-link {
+        color: $light;
+        font-family: $font-family-base2;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:click {
+            background-color: $light;
+        }
+    }
+
+    .btn-outline-success {
+        --bs-btn-border-color: none;
+    }
+}
+
+.dropdown-menu {
+    --bs-dropdown-divider-bg: none;
+    border-radius: .2rem;
+}
+
+h1 {
+    color: $light;
+    font-family: $font-family-base;
+}
+
+
+
+body {
+    background-image: url("../images/pexels-kaique-rocha-65437.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: $dark;
+}
