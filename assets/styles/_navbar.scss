@@ -7,12 +7,12 @@
     background-color: transparent;
 
     .navbar-brand {
-        color: $light;
+        color: $dark;
         font-family: $font-family-base2;
     }
 
     .nav-link {
-        color: $light;
+        color: $dark;
         font-family: $font-family-base2;
 
         &:hover {
@@ -20,7 +20,7 @@
         }
 
         &:click {
-            background-color: $light;
+            background-color: $dark;
         }
     }
 
