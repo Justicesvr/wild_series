@@ -1,4 +1,4 @@
-@import "custom";
+@import "custom.scss";
 
 .navbar1 {
     color: $intermediate;
@@ -41,13 +41,13 @@ h1 {
     font-family: $font-family-base;
 }
 
+header {
+    margin: 0;
+    min-height: 100vh;
 
-
-body {
     background-image: url("../images/pexels-kaique-rocha-65437.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-color: $dark;
 }
