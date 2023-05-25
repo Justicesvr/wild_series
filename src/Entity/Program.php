@@ -5,6 +5,11 @@ namespace App\Entity;
 use App\Repository\ProgramRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use App\Entity\Category;
+use App\Entity\Episode;
+use App\Entity\Season;
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
 class Program
@@ -26,6 +31,14 @@ class Program
     #[ORM\ManyToOne(inversedBy: 'programs')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\OneToMany(mappedBy: 'program', targetEntity: Season::class)]
+    private Collection $seasons;
+
+    public function __construct()
+    {
+        $this->seasons = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +89,35 @@ class Program
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+    /**
+     * @return Collection<int, Season>
+     */
+    public function getSeasons(): Collection
+    {
+        return $this->seasons;
+    }
+
+    public function addSeason(Season $season): self
+    {
+        if (!$this->seasons->contains($season)) {
+            $this->seasons->add($season);
+            $season->setProgramId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeason(Season $season): self
+    {
+        if ($this->seasons->removeElement($season)) {
+            // set the owning side to null (unless already changed)
+            if ($season->getProgramId() === $this) {
+                $season->setProgramId(null);
+            }
+        }
 
         return $this;
     }

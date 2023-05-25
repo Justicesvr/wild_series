@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\EpisodeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Category;
+use App\Entity\Program;
+use App\Entity\Season;
 
 #[ORM\Entity(repositoryClass: EpisodeRepository::class)]
 class Episode
@@ -15,6 +18,7 @@ class Episode
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'episodes')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?season $season = null;
 
     #[ORM\Column(length: 255)]
