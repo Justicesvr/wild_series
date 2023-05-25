@@ -11,7 +11,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
     const PROGRAMS = [
         [
-            'title' => 'Walking dead',
+            'title' => 'The Walking Dead',
             'synopsis' => 'Des zombies envahissent la terre',
             'category' => 'category_Horror',
         ],
@@ -45,12 +45,17 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+        $i = 0;
         foreach (self::PROGRAMS as $key => $programs) {
             $program = new Program();
             $program->setTitle($programs['title']);
             $program->setSynopsis($programs['synopsis']);
             $program->setCategory($this->getReference($programs['category']));
+
             $manager->persist($program);
+            $this->addReference('program_' . $i, $program);
+
+            $i++;
         }
         $manager->flush();
     }
