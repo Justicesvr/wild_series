@@ -30,7 +30,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
             $season->setTitle($faker->country());
 
 
-            $season->setProgram($this->getReference('program_' . $faker->numberBetween(0, 5)));
+            $season->setProgramId($this->getReference('program_' . $faker->numberBetween(0, 5)));
 
             $manager->persist($season);
             $this->addReference('season_' . $i, $season);
