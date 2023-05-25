@@ -24,10 +24,11 @@ class ProgramController extends AbstractController
         );
     }
     #[Route('/show/{id<^[0-9]+$>}', requirements: ['page' => '\d+'], methods: ['GET'], name: 'show')]
-    public function show(int $id, ProgramRepository $programRepository, SeasonRepository $seasonRepository): Response
+    public function show(int $id, ProgramRepository $programRepository, SeasonRepository $seasonRepository, EpisodeRepository $episodeRepository): Response
     {
         $program = $programRepository->findOneBy(['id' => $id]);
-        $seasons = $seasonRepository->findAll();
+        $seasons = $seasonRepository->findBy(['program' => $program]);
+        $episodes = $episodeRepository->findBy(['season' => $seasons]);
         // same as $program = $programRepository->find($id);
 
         if (!is_numeric($id)) {
@@ -42,7 +43,8 @@ class ProgramController extends AbstractController
 
         return $this->render('program/show.html.twig', [
             'program' => $program,
-            'seasons' => $seasons
+            'seasons' => $seasons,
+            'episodes' => $episodes
         ]);
     }
 
@@ -64,29 +66,7 @@ class ProgramController extends AbstractController
 
         return $this->render('program/season_show.html.twig', [
             'program' => $program,
-            'season' => $season
-        ]);
-    }
-
-    #[Route('/{seasonId}/episode/{episode}', name: 'episode_show')]
-    public function showEpisode(int $seasonId, SeasonRepository $seasonRepository, int $episodeId, EpisodeRepository $episodeRepository): Response
-    {
-        $season = $seasonRepository->find($seasonId);
-        if (!$season) {
-            throw $this->createNotFoundException(
-                'No season with id : ' . $seasonId . ' found in program\'s table.'
-            );
-        }
-
-        $episode = $episodeRepository->find($episodeId);
-        if (!$season) {
-            throw $this->createNotFoundException(
-                'No episode with id : ' . $episodeId . ' found in episode\'s table.'
-            );
-        }
-        return $this->render('program/season_show.html.twig', [
             'season' => $season,
-            'episode' => $episode
         ]);
     }
 }
