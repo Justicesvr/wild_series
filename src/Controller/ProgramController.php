@@ -57,9 +57,7 @@ class ProgramController extends AbstractController
         ]);
     }
 
-
-
-    #[Route('/program/{id}/', name: 'program_show')]
+    #[Route('/program/{id}/', name: 'show')]
 
     public function show(Program $program): Response
 
