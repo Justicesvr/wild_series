@@ -17,14 +17,26 @@
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
+		{#{{ app.session.get('total') }}#}
+
+
 	</head>
 	<body>
 		{% block header %}
 			{% include 'components/_navbar.html.twig' %}
 		{% endblock %}
+		{% for category, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ category }}">
+					{{ message }}
+
+				</div>
+			{% endfor %}
+		{% endfor %}
 
 		<main>
 			{% block body %}{% endblock %}
+
 		</main>
 		{% block footer%}
 			{% include 'components/_footer.html.twig' %}
