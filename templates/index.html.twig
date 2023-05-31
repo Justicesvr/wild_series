@@ -2,16 +2,15 @@
 
 {% block title %}Wild Series
 {% endblock %}
-{% block head %}
-	{% block stylesheet %}
-		<link rel="stylesheet" href="../../assets/styles/header.scss">
-	{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
 {% endblock %}
 
-
 {% block body %}
-	<h1>{{ website }}
-		Bienvenue!</h1>
-	<main></main>
-
+	<main>
+		<div class="picture">
+			<h1>{{ website }}
+				Bienvenue!</h1>
+		</div>
+	</main>
 {% endblock %}

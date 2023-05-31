@@ -20,10 +20,22 @@
 					</li>
 				{% endfor %}
 			</ul>
-		</div>
-		<a href="{{ path('category_index') }}">
-			Retour à la liste des catégories
-		</a>
+			<strong>Acteurs :</strong>
+			<ul>
+				{% for actor in program.actors %}
+					<li>
+						<a href="{{path('actor_index')}}">{{ actor.name }}</a>
+					</li>
+				</li>
 
+			{% else %}
+				<li>Aucun acteur pour cette série</li>
+			{% endfor %}
+		</ul>
 	</div>
-</div>{% endblock %}
+
+	<a href="{{ path('category_index') }}">
+		Retour à la liste des catégories
+	</a>
+
+</div></div>{% endblock %}
