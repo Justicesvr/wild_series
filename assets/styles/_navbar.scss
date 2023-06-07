@@ -4,30 +4,35 @@
 }
 
 .navbar {
-    background-color: transparent;
+    background-color: $dark;
 
     .navbar-brand {
-        color: $dark;
-        font-family: $font-family-base2;
+        color: $light;
+        font-family: $font-family-base;
     }
 
     .nav-link {
-        color: $dark;
-        font-family: $font-family-base2;
+        color: $light;
+        font-family: $font-family-base;
 
         &:hover {
             text-decoration: underline;
         }
 
         &:click {
-            background-color: $dark;
+            background-color: $light;
         }
+    }
+
+    .navbar-toggler {
+        color: $light;
+
     }
 
     .btn-outline-success {
         --bs-btn-border-color: none;
-        --bs-btn-color: $light;
-        --bs-btn-hover-bg: rgb(233, 232, 232);
+        --bs-btn-color: rgb(233, 232, 232);
+        --bs-btn-hover-bg: $dark;
         --bs-btn-hover-border-color: $light;
         --bs-btn-active-bg: rgb(233, 232, 232);
     }

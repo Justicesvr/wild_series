@@ -1,18 +1,131 @@
-main {
+.header {
+    height: 90vh;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
 
-    .picture {
-        margin: 0;
-        min-height: 100vh;
+    background-color: $dark;
+    //.picture {
+    // margin: 0;
+    //min-height: 100vh;
 
-        background-image: url("../images/pexels-kaique-rocha-65437.jpg");
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
+    // background-image: url("../images/pexels-kaique-rocha-65437.jpg");
+    //background-position: center center;
+    //background-repeat: no-repeat;
+    // background-size: cover;
 
-        h1 {
-            color: $light;
-            font-family: $font-family-base;
-        }
+    h1 {
+        color: $light;
+        font-family: $font-family-base;
     }
 
+    .group {
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+
+        .item {
+            width: 15vw;
+            height: 80vh;
+            background-position: center;
+            background-size: 80vh;
+            margin: 1vw;
+            border-radius: 1rem;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .img1 {
+            background-image: url('../images/BDL.jpeg');
+            background-size: cover;
+            //transition: transform .1s;
+
+            //-webkit-transform: scale(1);
+            //transform: scale(1);
+            //-webkit-transition: .3s ease-in-out;
+            //transition: .3s ease-in-out;
+
+            //&:hover {
+            //-webkit-transform: scale(1.2);
+            //transform: scale(1.2);
+
+            //}
+        }
+
+        .img2 {
+            background-image: url('../images/GOT.webp');
+            background-size: cover;
+            //transition: transform .1s;
+
+            //-webkit-transform: scale(1);
+            //transform: scale(1);
+            //-webkit-transition: .3s ease-in-out;
+            //transition: .3s ease-in-out;
+
+            //&:hover {
+            //-webkit-transform: scale(1.2);
+            //transform: scale(1.2);
+
+            //}
+
+        }
+
+        .img3 {
+            background-image: url('../images/AHS2.webp');
+            background-size: cover;
+            //transition: transform .1s;
+
+            //-webkit-transform: scale(1);
+            //transform: scale(1);
+            //-webkit-transition: .3s ease-in-out;
+            //transition: .3s ease-in-out;
+
+            //&:hover {
+            //-webkit-transform: scale(1.2);
+            //transform: scale(1.2);
+
+            //}
+
+        }
+
+        .img4 {
+            background-image: url('../images/TWD.jpeg');
+            background-size: cover;
+            //transition: transform .1s;
+
+            //-webkit-transform: scale(1);
+            //transform: scale(1);
+            //-webkit-transition: .3s ease-in-out;
+            //transition: .3s ease-in-out;
+
+            //&:hover {
+            //-webkit-transform: scale(1.2);
+            //transform: scale(1.2);
+
+            //}
+
+        }
+
+        .img5 {
+            background-image: url('../images/TLOS.jpeg');
+            background-size: cover;
+            //transition: transform .1s;
+
+            //-webkit-transform: scale(1);
+            //transform: scale(1);
+            //-webkit-transition: .3s ease-in-out;
+            //transition: .3s ease-in-out;
+
+            //&:hover {
+            //-webkit-transform: scale(1.2);
+            //transform: scale(1.2);
+
+            //}
+
+        }
+    }
 }

@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+{% block title %}New season
+{% endblock %}
+
+{% block body %}
+	<h1>New season
+		{{ season.title }}
+		created</h1>
+	<p>Hello, the new season
+		{{ season.title }}
+		has been created on Wild Series</p>
+	<p>Synopsis :
+		{{season.synopsis }}</p>
+	<p>Year :
+		{{season.year }}
+	</p>
+{% endblock %}
