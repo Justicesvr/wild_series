@@ -39,16 +39,17 @@ class Actor
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
+    private ?File $posterFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
 
-    private ?File $posterFile = null;
 
     public function __construct()
     {
         $this->programs = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -117,5 +118,17 @@ class Actor
     public function getPosterFile(): ?File
     {
         return $this->posterFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }
