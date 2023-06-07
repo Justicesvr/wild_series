@@ -29,7 +29,7 @@ class ActorType extends AbstractType
             'expanded' => true,
             'by_reference' => false,
         ])
-            ->add('posterFile', VichFileType::class, [
+            ->add('actorFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
