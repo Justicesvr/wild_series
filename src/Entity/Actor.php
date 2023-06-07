@@ -34,12 +34,12 @@ class Actor
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $poster = null;
 
-    #[UploadableField(mapping: 'poster_file', fileNameProperty: 'poster')]
+    #[UploadableField(mapping: 'actor_file', fileNameProperty: 'poster')]
     #[Assert\File(
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
-    private ?File $posterFile = null;
+    private ?File $actorFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
@@ -105,9 +105,9 @@ class Actor
         return $this;
     }
 
-    public function setPosterFile(File $image = null): Actor
+    public function setActorFile(File $image = null): Actor
     {
-        $this->posterFile = $image;
+        $this->actorFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -115,9 +115,9 @@ class Actor
         return $this;
     }
 
-    public function getPosterFile(): ?File
+    public function getActorFile(): ?File
     {
-        return $this->posterFile;
+        return $this->actorFile;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
