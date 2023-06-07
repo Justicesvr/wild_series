@@ -8,10 +8,8 @@
 	<h1>{{ program.title }}</h1>
 	<h3>{{ season.title }}</h3>
 	<ul>
-		{% for episode in season.episodes %}
-			<li>{{ episode.number}}/{{ episode.title }}
-				<p>{{ episode.synopsis }}</p>
-			</li>
-		{% endfor %}
+		<li>{{ episode.number}}/{{ episode.title }}
+			<p>{{ episode.synopsis }}</p>
+		</li>
 	</ul>
 {% endblock %}

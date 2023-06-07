@@ -2,12 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\ActorRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use DateTimeInterface;
+use App\Entity\Program;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ActorRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ActorRepository::class)]
+#[Vich\Uploadable]
 class Actor
 {
     #[ORM\Id]
@@ -20,6 +30,20 @@ class Actor
 
     #[ORM\ManyToMany(targetEntity: Program::class, inversedBy: 'actors')]
     private Collection $programs;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $poster = null;
+
+    #[UploadableField(mapping: 'poster_file', fileNameProperty: 'poster')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
+
+    private ?File $posterFile = null;
 
     public function __construct()
     {
@@ -51,6 +75,19 @@ class Actor
         return $this->programs;
     }
 
+
+    public function getPoster(): ?string
+    {
+        return $this->poster;
+    }
+
+    public function setPoster(string $poster): self
+    {
+        $this->poster = $poster;
+
+        return $this;
+    }
+
     public function addProgram(Program $program): self
     {
         if (!$this->programs->contains($program)) {
@@ -65,5 +102,20 @@ class Actor
         $this->programs->removeElement($program);
 
         return $this;
+    }
+
+    public function setPosterFile(File $image = null): Actor
+    {
+        $this->posterFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+
+        return $this;
+    }
+
+    public function getPosterFile(): ?File
+    {
+        return $this->posterFile;
     }
 }

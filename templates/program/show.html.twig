@@ -5,17 +5,18 @@
 
 {% block body %}
 	<div class="media">
-		<img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+		<img class="align-self-start mr-3" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
 		<div class="media-body">
 			<h1 class="mt-0">{{ program.title }}</h1>
 			<p>{{ program.synopsis }}</p>
 			<p>Catégorie :
 				{{ program.category.name }}</p>
 			<div>
+				<strong>Saisons :</strong>
 				<ul>
 					{% for season in program.seasons %}
 						<li>
-							<a href="{{path('program_season_show',{ 'program': program.id, 'season': season.id } )}}">{{ season.title }}</a>
+							<a href="{{path('program_season_show',{ 'slug': program.slug, 'season': season.id } )}}">{{ season.title }}</a>
 						</li>
 					</li>
 				{% endfor %}
