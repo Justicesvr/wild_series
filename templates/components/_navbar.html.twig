@@ -3,8 +3,15 @@
 		<span class="navbar-text">
 			Soutenez la Wild Séries | Faire un don
 		</span>
-		<span class="navbar-text">
-			<a href="/program/new">Se connecter</a>
+		<span class="navbar-text d-flex justify-content-center d-grid gap-4">
+			{% if app.user %}
+				{{ app.user.email }}
+				<a href="{{ path('app_logout') }}">
+					Se déconnecter</a>
+			{% else %}
+				<a href="{{ path('app_login') }}">
+					Se connecter</a>
+			{% endif %}
 		</span>
 	</div>
 </nav>
