@@ -6,10 +6,15 @@
 
 {% block body %}
 	<h1>{{ program.title }}</h1>
-	<h3>{{ season.title }}</h3>
+	<h3>
+		Saison :
+		{{ season.number }}
+		{{ season.title }}</h3>
 	<ul>
 		{% for episode in season.episodes %}
-			<li>{{ episode.number}}/{{ episode.title }}
+			<li>Episode:
+				{{ episode.number }}
+				<p>{{ episode.title }}</p>
 				<p>{{ episode.synopsis }}</p>
 			</li>
 			<a href="{{ path('program_episode_show', {'slug': program.slug, 'season': season.id, 'episode': episode.id}) }}">show</a>

@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
-#[Route('/episode')]
+#[Route('/episode', name: 'episode_')]
 class EpisodeController extends AbstractController
 {
     #[Route('/', name: 'app_episode_index', methods: ['GET'])]
@@ -60,7 +60,7 @@ class EpisodeController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}/', name: 'app_episode_show', methods: ['GET'])]
+    #[Route('/{slug}/', name: 'show', methods: ['GET'])]
     public function show(Episode $episode): Response
     {
         return $this->render('episode/episode_show.html.twig', [
@@ -68,7 +68,7 @@ class EpisodeController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}/edit', name: 'app_episode_edit', methods: ['GET', 'POST'])]
+    #[Route('/{slug}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Episode $episode, EpisodeRepository $episodeRepository): Response
     {
         $form = $this->createForm(EpisodeType::class, $episode);
@@ -77,7 +77,7 @@ class EpisodeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $episodeRepository->save($episode, true);
 
-            return $this->redirectToRoute('app_episode_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('episode_show', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('episode/edit.html.twig', [
@@ -86,13 +86,13 @@ class EpisodeController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}/', name: 'app_episode_delete', methods: ['POST'])]
+    #[Route('/{slug}/', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Episode $episode, EpisodeRepository $episodeRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $episode->getId(), $request->request->get('_token'))) {
             $episodeRepository->remove($episode, true);
         }
 
-        return $this->redirectToRoute('app_episode_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('episode_show', [], Response::HTTP_SEE_OTHER);
     }
 }

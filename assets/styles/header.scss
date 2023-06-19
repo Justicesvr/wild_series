@@ -129,3 +129,28 @@
         }
     }
 }
+
+main {
+    background-color: $light;
+
+    h1 {
+        color: $light;
+        font-family: $font-family-base;
+    }
+
+    .caroussel {
+        .carousel-items {
+            display: flex;
+            overflow-x: scroll;
+            padding: 1rem 0;
+        }
+
+        .carousel-item {
+            margin-left: 1rem;
+        }
+    }
+}
+
+body {
+    background-color: $light;
+}

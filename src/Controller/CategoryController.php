@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/category', name: 'category_')]
 class CategoryController extends AbstractController
@@ -25,8 +26,8 @@ class CategoryController extends AbstractController
             ['categories' => $categories]
         );
     }
-
     #[Route('/new', name: 'new')]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
         $category = new Category();
@@ -35,6 +36,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted()) {
             $categoryRepository->save($category, true);
+
             return $this->redirectToRoute('category_index');
         }
 
