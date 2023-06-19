@@ -1,0 +1,22 @@
+<div{{attributes}}>
+	<div class="container d-flex">
+		<div class="row">
+			{% for episode in this.episode %}
+				<div class="col-lg-4 d-flex justify-content-center py-5 col-md-6">
+					<div class="card shadow mb-5 border border-0 rounded" style="width:25rem;">
+						<div class="card-body">
+							<h4 class="card-title fw-bolder p-3 fs-4 mb-0" style="height: 8rem">{{ episode.number }}/{{ episode.title }}</h4>
+							<p class="card-text mb-1 p-3" style="height: 22rem;">{{ episode.synopsis}}</p>
+
+							<p class="card-text mb-1 p-3" style="height: 4rem;">{{ episode.season.title }}</p>
+							<p class="card-text mb-1 p-3" style="height: 2rem;">{{ episode.season.program.title }}</p>
+							<div class="text-end p-3 btn-rounded">
+								<a href="#" class="btn btn-outline-primary bg-light fw-bolder fs-6 btn-rounded rounded-pill">En savoir plus</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

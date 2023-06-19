@@ -21,25 +21,28 @@
 
 
 	</head>
-	<body {{ stimulus_controller('theme') }} {{ stimulus_target('theme', 'body') }}>
-		{% block header %}
-			{% include 'components/_navbar.html.twig' %}
-		{% endblock %}
-		{% for category, messages in app.flashes %}
-			{% for message in messages %}
-				<div class="alert alert-{{ category }}">
-					{{ message }}
+	<body {{ stimulus_controller('symfony/ux-swup/swup') }} {{ stimulus_controller('theme') }} {{ stimulus_target('theme', 'body') }}>
 
-				</div>
+		<div id="swup">
+			{% block header %}
+				{% include 'components/_navbar.html.twig' %}
+			{% endblock %}
+			{% for category, messages in app.flashes %}
+				{% for message in messages %}
+					<div class="alert alert-{{ category }}">
+						{{ message }}
+
+					</div>
+				{% endfor %}
 			{% endfor %}
-		{% endfor %}
 
-		<main>
-			{% block body %}{% endblock %}
-
-		</main>
-		{% block footer%}
-			{% include 'components/_footer.html.twig' %}
-		{% endblock %}
+			<main>
+				{% block body %}{% endblock %}
+				{{ component('last_episode') }}
+			</main>
+			{% block footer%}
+				{% include 'components/_footer.html.twig' %}
+			{% endblock %}
+		</div>
 	</body>
-</html>
+</html></body></html>
