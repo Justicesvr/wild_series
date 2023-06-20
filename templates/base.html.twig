@@ -35,14 +35,15 @@
 					</div>
 				{% endfor %}
 			{% endfor %}
-
-			<main>
-				{% block body %}{% endblock %}
-				{{ component('last_episode') }}
-			</main>
-			{% block footer%}
-				{% include 'components/_footer.html.twig' %}
-			{% endblock %}
 		</div>
+
+		{% block body %}{% endblock %}
+		{{ component('last_episode') }}
+
+
+		{% block footer %}
+			{% include 'components/_footer.html.twig' %}
+		{% endblock %}
+
 	</body>
-</html></body></html>
+</html>

@@ -19,12 +19,12 @@
 				{% include 'components/_navbar.html.twig' %}
 			{% endblock %}
 
-			<main>
-				{% block body %}{% endblock %}
+			{% block body %}{% endblock %}
 
-			</main>
-			{% block footer%}
+
+			{% block footer %}
 				{% include 'components/_footer.html.twig' %}
+
 			{% endblock %}
 
 		</body>
