@@ -5,11 +5,38 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{ program.title }}</h1>
-	<h3>{{ season.title }}</h3>
-	<ul>
-		<li>{{ episode.number}}/{{ episode.title }}
-			<p>{{ episode.synopsis }}</p>
-		</li>
-	</ul>
-{% endblock %}
+	<div class="container">
+		<h1 class="my-4">{{ program.title }}</h1>
+		<h3>{{ season.title }}</h3>
+		<ul>
+			<li>{{ episode.number}}/{{ episode.title }}
+				<p>{{ episode.synopsis }}</p>
+			</li>
+		</ul>
+		<div class="container">
+			{% for comment in episode.comments %}
+				{% if is_granted("ROLE_ADMIN") or app.user is same as(comment.author) %}
+					{%endif%}
+					<h6>{{ comment.author.email }}</h6>
+					<li>{{ comment.rate ~ ' ' ~ comment.comment}}</li>
+					<div class="btn my-2">
+						<a href="{{ path('comment_edit', { 'id': comment.id } ) }}">Éditer</a>
+					</div>
+					<div class="btn my-2">
+						<a href="{{ path('comment_delete', { 'id': comment.id } ) }}">Supprimer</a>
+					</div>
+				{% else %}
+					Aucun commentaire trouvé.
+				{% endfor %}
+				<div>
+					{% if app.user %}
+						{{ form_start(form)}}
+						{{ form_widget(form)}}
+						<button class="btn">{{ button_label|default('save') }}</button>
+						{{ form_end(form) }}
+					{% endif %}
+				</div>
+				<h3 class="my-3">Ajouter un commentaire</h3>
+				{# {{ include('comment/_form.html.twig') }} #}
+			</div>
+		{% endblock %}

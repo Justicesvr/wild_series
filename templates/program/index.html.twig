@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	{{ include('components/search_form.html.twig') }}
 	{% for category, messages in app.flashes %}
 		{% for message in messages %}
 			<div class="alert alert-{{ category }}">
@@ -30,7 +31,7 @@
 		Aucune série trouvée.
 	{% endfor %}
 
-	<a href="{{ path('app_index') }}">
+	<a href="{{ path('home_index') }}">
 		Retour à la page d'accueil
 	</a>
 {% endblock %}

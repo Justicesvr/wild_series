@@ -14,17 +14,17 @@ class Comment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $comment = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $rate = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: Episode::class, inversedBy: "comments")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Episode $episode = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "comments")]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
@@ -57,24 +57,24 @@ class Comment
         return $this;
     }
 
-    public function getEpisode(): ?episode
+    public function getEpisode(): ?Episode
     {
         return $this->episode;
     }
 
-    public function setEpisode(?episode $episode): self
+    public function setEpisode(?Episode $episode): self
     {
         $this->episode = $episode;
 
         return $this;
     }
 
-    public function getAuthor(): ?user
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    public function setAuthor(?user $author): self
+    public function setAuthor(?User $author): self
     {
         $this->author = $author;
 
